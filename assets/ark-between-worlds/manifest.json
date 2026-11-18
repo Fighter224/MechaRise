@@ -1,0 +1,340 @@
+{
+  "name": "Ark Between Worlds",
+  "state": "Prologue \u2014 empty sanctuary",
+  "background": {
+    "file": "ark-prologue-background.png",
+    "size": [
+      1672,
+      941
+    ],
+    "alpha": false
+  },
+  "atlas": "source/ark-structures-atlas.png",
+  "sprites": [
+    {
+      "id": "arrival-platform",
+      "file": "sprites/arrival-platform-hd.png",
+      "size": [
+        1672,
+        932
+      ],
+      "unityPivot": [
+        0.5,
+        0.06
+      ],
+      "alpha": true,
+      "source": "source/arrival-platform-hd-original.png"
+    },
+    {
+      "id": "system-core",
+      "file": "sprites/system-core.png",
+      "size": [
+        344,
+        409
+      ],
+      "sourceRect": [
+        512,
+        0,
+        512,
+        512
+      ],
+      "trimBounds": "344x409+85+50",
+      "unityPivot": [
+        0.5,
+        0.06
+      ],
+      "alpha": true
+    },
+    {
+      "id": "broken-gateway",
+      "file": "sprites/broken-gateway.png",
+      "size": [
+        444,
+        388
+      ],
+      "sourceRect": [
+        1024,
+        0,
+        512,
+        512
+      ],
+      "trimBounds": "444x388+19+73",
+      "unityPivot": [
+        0.5,
+        0.06
+      ],
+      "alpha": true
+    },
+    {
+      "id": "rescue-bay",
+      "file": "sprites/rescue-bay.png",
+      "size": [
+        458,
+        265
+      ],
+      "sourceRect": [
+        0,
+        512,
+        512,
+        512
+      ],
+      "trimBounds": "458x265+45+112",
+      "unityPivot": [
+        0.5,
+        0.06
+      ],
+      "alpha": true
+    },
+    {
+      "id": "system-beacon",
+      "file": "sprites/system-beacon.png",
+      "size": [
+        218,
+        270
+      ],
+      "sourceRect": [
+        512,
+        512,
+        512,
+        512
+      ],
+      "trimBounds": "218x270+151+100",
+      "unityPivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": true
+    },
+    {
+      "id": "floating-fragments",
+      "file": "sprites/floating-fragments.png",
+      "size": [
+        330,
+        323
+      ],
+      "sourceRect": [
+        1024,
+        512,
+        512,
+        512
+      ],
+      "trimBounds": "330x323+75+71",
+      "unityPivot": [
+        0.5,
+        0.5
+      ],
+      "alpha": true
+    }
+  ],
+  "unityNotes": {
+    "textureType": "Sprite (2D and UI)",
+    "compression": "None",
+    "mipmaps": false,
+    "filterMode": "Bilinear",
+    "pivotOrigin": "bottom-left"
+  },
+  "runtime": {
+    "renderer": "ark-scene.js",
+    "layout": "scene-layout.json",
+    "usesPrerenderedBackground": false,
+    "sharedBy": [
+      "Ark lobby",
+      "Chapter 0 awakening",
+      "Chapter 0 return"
+    ],
+    "effects": [
+      "background mist",
+      "crystal facet rotation",
+      "core pulse",
+      "guide light bob and turn",
+      "warm lamp floor light",
+      "surface light pools",
+      "circuit pulses",
+      "floating motes",
+      "active gate field",
+      "resident idle animation",
+      "pilot breathing and step lift"
+    ],
+    "navigation": {
+      "stairs": 6,
+      "model": "projected 2.5D surfaces with heights and edge collision",
+      "segmentChecks": true,
+      "obstacles": "fixture, rubble, equipment, pillar and railing footprints",
+      "pathfinder": "shared sampled grid search with exact endpoint attachment"
+    }
+  },
+  "floorAssets": [
+    {
+      "id": "core-walkway",
+      "file": "floors/core-walkway.png",
+      "vectorSource": "floors/core-walkway.svg",
+      "size": [
+        370,
+        380
+      ],
+      "alpha": true
+    },
+    {
+      "id": "gate-walkway",
+      "file": "floors/gate-walkway.png",
+      "vectorSource": "floors/gate-walkway.svg",
+      "size": [
+        620,
+        275
+      ],
+      "alpha": true
+    },
+    {
+      "id": "rescue-walkway",
+      "file": "floors/rescue-walkway.png",
+      "vectorSource": "floors/rescue-walkway.svg",
+      "size": [
+        850,
+        710
+      ],
+      "alpha": true
+    }
+  ],
+  "detailAssets": [
+    {
+      "id": "ark-lantern",
+      "file": "details/ark-lantern.png",
+      "vectorSource": "details/ark-lantern.svg",
+      "size": [
+        64,
+        114
+      ],
+      "alpha": true
+    },
+    {
+      "id": "arrival-landing",
+      "file": "details/arrival-landing.png",
+      "vectorSource": "details/arrival-landing.svg",
+      "size": [
+        420,
+        130
+      ],
+      "alpha": true
+    },
+    {
+      "id": "bridge-threshold",
+      "file": "details/bridge-threshold.png",
+      "vectorSource": "details/bridge-threshold.svg",
+      "size": [
+        200,
+        100
+      ],
+      "alpha": true
+    },
+    {
+      "id": "docking-cradle",
+      "file": "details/docking-cradle.png",
+      "vectorSource": "details/docking-cradle.svg",
+      "size": [
+        380,
+        180
+      ],
+      "alpha": true
+    },
+    {
+      "id": "gateway-rubble",
+      "file": "details/gateway-rubble.png",
+      "vectorSource": "details/gateway-rubble.svg",
+      "size": [
+        190,
+        100
+      ],
+      "alpha": true
+    },
+    {
+      "id": "maintenance-console",
+      "file": "details/maintenance-console.png",
+      "vectorSource": "details/maintenance-console.svg",
+      "size": [
+        100,
+        122
+      ],
+      "alpha": true
+    },
+    {
+      "id": "repair-station",
+      "file": "details/repair-station.png",
+      "vectorSource": "details/repair-station.svg",
+      "size": [
+        160,
+        138
+      ],
+      "alpha": true
+    },
+    {
+      "id": "stair-flight",
+      "file": "details/stair-flight.png",
+      "vectorSource": "details/stair-flight.svg",
+      "size": [
+        170,
+        118
+      ],
+      "alpha": true
+    },
+    {
+      "id": "support-bracket",
+      "file": "details/support-bracket.png",
+      "vectorSource": "details/support-bracket.svg",
+      "size": [
+        100,
+        105
+      ],
+      "alpha": true
+    }
+  ],
+  "audioAssets": [
+    {
+      "id": "blocked",
+      "file": "audio/blocked.wav",
+      "format": "PCM16 mono / 22050 Hz",
+      "loop": false
+    },
+    {
+      "id": "core-hum",
+      "file": "audio/core-hum.wav",
+      "format": "PCM16 mono / 22050 Hz",
+      "loop": true
+    },
+    {
+      "id": "dock-machinery",
+      "file": "audio/dock-machinery.wav",
+      "format": "PCM16 mono / 22050 Hz",
+      "loop": true
+    },
+    {
+      "id": "link-chime",
+      "file": "audio/link-chime.wav",
+      "format": "PCM16 mono / 22050 Hz",
+      "loop": false
+    },
+    {
+      "id": "step-metal",
+      "file": "audio/step-metal.wav",
+      "format": "PCM16 mono / 22050 Hz",
+      "loop": false
+    },
+    {
+      "id": "step-stairs",
+      "file": "audio/step-stairs.wav",
+      "format": "PCM16 mono / 22050 Hz",
+      "loop": false
+    },
+    {
+      "id": "step-stone",
+      "file": "audio/step-stone.wav",
+      "format": "PCM16 mono / 22050 Hz",
+      "loop": false
+    },
+    {
+      "id": "void-air",
+      "file": "audio/void-air.wav",
+      "format": "PCM16 mono / 22050 Hz",
+      "loop": true
+    }
+  ]
+}

@@ -1,0 +1,410 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=JetBrains+Mono:wght@400;700&display=swap');
+
+:root {
+  --bg-deep: #070812;
+  --panel: #101324;
+  --border: #2a3154;
+  --accent-purple: #a855f7;
+  --accent-cyan: #22d3ee;
+  --accent-green: #10b981;
+  --accent-amber: #f59e0b;
+  --accent-red: #ef4444;
+  --text-main: #f1f5f9;
+  --text-dim: #94a3b8;
+  --font-display: 'Orbitron', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+}
+
+body {
+  background: #04050a;
+  color: var(--text-main);
+  font-family: var(--font-mono);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+#game-shell {
+  width: 1086px;
+  background: var(--bg-deep);
+  border: 2px solid var(--border);
+  border-radius: 6px;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.9), 0 0 24px rgba(168, 85, 247, 0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* TOP HUD */
+.top-hud {
+  height: 46px;
+  background: linear-gradient(180deg, #161a30 0%, #0d1020 100%);
+  border-bottom: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+}
+
+.hud-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.logo-badge {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  background: linear-gradient(90deg, var(--accent-purple), var(--accent-cyan));
+  color: #05070e;
+  padding: 4px 10px;
+  border-radius: 3px;
+}
+
+.sector-info {
+  display: flex;
+  gap: 12px;
+  font-size: 11px;
+}
+
+#sector-title {
+  color: var(--accent-cyan);
+  font-weight: 700;
+}
+
+#wave-info {
+  color: var(--accent-amber);
+}
+
+.stage-pills {
+  display: flex;
+  gap: 4px;
+}
+
+.stage-pill {
+  background: #171c36;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  font-family: var(--font-display);
+  font-size: 11px;
+  width: 26px;
+  height: 26px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.stage-pill:hover {
+  border-color: var(--accent-cyan);
+  color: #fff;
+}
+
+.stage-pill.active {
+  background: var(--accent-purple);
+  border-color: #d8b4fe;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
+}
+
+.rpg-stats {
+  display: flex;
+  gap: 14px;
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+.rpg-stats strong {
+  color: var(--accent-cyan);
+}
+
+/* VIEWPORT */
+.viewport-wrapper {
+  position: relative;
+  width: 1086px;
+  height: 540px;
+  background: #070812;
+  overflow: hidden;
+}
+
+#game-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.scanlines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.18) 50%);
+  background-size: 100% 4px;
+  opacity: 0.45;
+}
+
+/* PLAYER HUD OVERLAY */
+.player-hud {
+  position: absolute;
+  top: 12px;
+  left: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(10, 12, 24, 0.85);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent-purple);
+  padding: 8px 12px;
+  border-radius: 4px;
+  backdrop-filter: blur(4px);
+  pointer-events: none;
+}
+
+.mech-portrait {
+  width: 58px;
+  height: 68px;
+  background: #090b16;
+  border: 1px solid #3b426b;
+  border-radius: 3px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mech-portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.mech-bars {
+  width: 210px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mech-name {
+  font-family: var(--font-display);
+  font-size: 11px;
+  color: #e9d5ff;
+  letter-spacing: 0.8px;
+  margin-bottom: 2px;
+}
+
+.bar-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.bar-row .lbl {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-dim);
+  width: 18px;
+}
+
+.track {
+  flex: 1;
+  height: 7px;
+  background: #1c2038;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  transition: width 0.15s ease;
+}
+
+.fill.hp { background: linear-gradient(90deg, #059669, #10b981); }
+.fill.en { background: linear-gradient(90deg, #0284c7, #22d3ee); }
+.fill.heat { background: linear-gradient(90deg, #d97706, #ef4444); }
+.fill.od { background: linear-gradient(90deg, #7e22ce, #e879f9); }
+.fill.boss { background: linear-gradient(90deg, #b91c1c, #f43f5e); }
+
+.bar-row .val {
+  font-size: 10px;
+  color: var(--text-main);
+  width: 52px;
+  text-align: right;
+}
+
+/* BOSS HUD */
+.boss-hud {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  width: 320px;
+  background: rgba(16, 10, 20, 0.88);
+  border: 1px solid #7f1d1d;
+  border-right: 3px solid var(--accent-red);
+  padding: 8px 12px;
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+.boss-hud.hidden {
+  display: none;
+}
+
+.boss-name {
+  font-family: var(--font-display);
+  font-size: 11px;
+  color: #fca5a5;
+  margin-bottom: 5px;
+}
+
+.boss-track {
+  height: 10px;
+  border: 1px solid #7f1d1d;
+}
+
+.boss-sub {
+  margin-top: 4px;
+  font-size: 10px;
+  color: #fecaca;
+  text-align: right;
+}
+
+/* CENTER BANNER */
+.center-banner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(10, 12, 24, 0.92);
+  border: 2px solid var(--accent-purple);
+  padding: 22px 42px;
+  text-align: center;
+  border-radius: 6px;
+  box-shadow: 0 0 35px rgba(168, 85, 247, 0.45);
+}
+
+.center-banner.hidden {
+  display: none;
+}
+
+.center-banner h2 {
+  font-family: var(--font-display);
+  font-size: 24px;
+  color: var(--accent-cyan);
+  letter-spacing: 3px;
+  margin-bottom: 8px;
+}
+
+.center-banner p {
+  font-size: 12px;
+  color: #e2e8f0;
+}
+
+/* FOOTER CONTROLS */
+.controls-footer {
+  background: #0b0e1c;
+  border-top: 2px solid var(--border);
+  padding: 8px 14px;
+  display: grid;
+  grid-template-columns: 1fr 1.35fr 1fr;
+  gap: 12px;
+  align-items: center;
+}
+
+.group-title {
+  font-size: 9px;
+  color: var(--accent-purple);
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+}
+
+.keys-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.key-chip {
+  font-size: 10px;
+  color: var(--text-dim);
+  background: #14182e;
+  border: 1px solid #262d4d;
+  padding: 3px 6px;
+  border-radius: 3px;
+}
+
+.key-chip.special {
+  border-color: #7e22ce;
+  color: #e9d5ff;
+}
+
+kbd {
+  background: #232a4a;
+  color: var(--accent-cyan);
+  border: 1px solid #3c4678;
+  border-radius: 2px;
+  padding: 0 4px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.combat-feed {
+  background: #070913;
+  border: 1px solid #232946;
+  border-radius: 4px;
+  padding: 8px 10px;
+  font-size: 11px;
+  color: #cbd5e1;
+  height: 54px;
+  display: flex;
+  align-items: center;
+}
+
+/* Mission console */
+body { min-height:100dvh; padding:24px; flex-direction:column; overflow:auto; background:radial-gradient(ellipse at 50% 10%, #182039 0%, #070a12 65%); }
+.mission-heading { width:min(1200px,100%); display:flex; justify-content:space-between; font-size:10px; letter-spacing:2px; color:#6e829e; padding:0 0 12px; }
+#game-shell { width:min(1200px,100%); flex-shrink:0; border:1px solid #35435a; border-radius:10px; }
+.top-hud { height:auto; min-height:58px; gap:12px; flex-wrap:wrap; padding:12px 16px; }
+.sector-info { flex-direction:column; gap:4px; font-size:10px; }
+.hud-right { display:flex; gap:16px; align-items:center; }
+.rpg-stats { gap:10px; font-size:10px; }
+.rpg-stats span:last-child { display:none; }
+.utility-button { background:#19253a; color:#b5cadf; border:1px solid #3a4b64; border-radius:4px; padding:7px 10px; cursor:pointer; font:10px var(--font-mono); }
+.viewport-wrapper { width:100%; height:auto; aspect-ratio:1086 / 540; }
+.mission-overlay { position:absolute; inset:0; z-index:5; display:flex; align-items:center; padding:5%; background:linear-gradient(90deg,rgba(5,10,20,.97),rgba(5,10,20,.82) 48%,rgba(5,10,20,.18)); }
+.mission-overlay.hidden { display:none; }
+.briefing { max-width:470px; }
+.eyebrow { color:#64e3ee; font-size:10px; letter-spacing:2px; }
+.briefing h1 { font:800 clamp(32px,6vw,76px)/.95 var(--font-display); letter-spacing:-2px; margin:20px 0; }
+.briefing em { font-style:normal; color:#70e8f0; }
+.briefing p { color:#a8b8cc; font-size:12px; line-height:1.8; max-width:400px; }
+.briefing-controls { display:flex; flex-wrap:wrap; gap:14px; font-size:9px; color:#cad7e5; margin:22px 0; }
+#mission-action { display:block; background:#69e5ed; color:#07121d; border:0; border-radius:3px; padding:15px 30px; font:700 12px var(--font-mono); letter-spacing:2px; cursor:pointer; box-shadow:0 0 25px #22d3ee22; }
+#mission-action:disabled { opacity:.5; cursor:wait; }
+.briefing small { display:block; font-size:9px; color:#8497af; margin-top:13px; }
+.loadout { display:grid; grid-template-columns:1.3fr repeat(4,1fr); background:#10192a; border-top:1px solid #35435a; }
+.loadout>div { padding:14px 16px; border-right:1px solid #29354b; }
+.loadout strong { display:block; font-size:9px; color:#8d9db4; margin-top:6px; }
+.skill { display:flex; align-items:center; gap:10px; font-size:10px; color:#dae8f2; }
+.skill kbd { font-size:16px; padding:5px 8px; }
+.skill small { display:block; font-size:8px; color:#7d91a9; margin-top:5px; }
+.skill.unavailable { opacity:.4; }
+.skill.ultimate.ready { background:#44245b; box-shadow:inset 0 2px #de92ff; }
+.controls-footer { grid-template-columns:1fr 1.35fr; padding:12px 16px; }
+.combat-feed { grid-column:1/-1; height:auto; min-height:32px; font-size:10px; color:#7bb8c7; }
+button:focus-visible { outline:2px solid #fff; outline-offset:3px; }
+@media(max-width:760px) { body{padding:10px} .mission-heading{font-size:8px;letter-spacing:1px} .mission-heading span:last-child{display:none} .top-hud{gap:8px}.logo-badge{font-size:10px}.hud-center{order:3;width:100%}.hud-right{margin-left:auto}.rpg-stats{display:none}.player-hud{transform:scale(.65);transform-origin:top left;top:6px;left:6px}.boss-hud{width:40%;transform:scale(.75);transform-origin:top right}.loadout{grid-template-columns:repeat(4,1fr)}.loadout>div:first-child{display:none}.loadout>div{padding:9px 5px}.skill{font-size:7px;gap:5px}.skill kbd{font-size:12px}.controls-footer{grid-template-columns:1fr}.combat-feed{grid-column:auto}.briefing h1{margin:8px 0;font-size:30px}.briefing p{font-size:9px;max-width:300px}.briefing-controls{margin:10px 0;gap:8px}#mission-action{padding:10px 18px}.briefing small{font-size:8px}.center-banner{width:85%;padding:15px}.center-banner h2{font-size:18px} }

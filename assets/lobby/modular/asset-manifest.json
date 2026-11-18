@@ -1,0 +1,871 @@
+{
+  "version": 1,
+  "pixelPilot": true,
+  "assets": [
+    {
+      "id": "hangar",
+      "file": "assets/lobby/modular/buildings/hangar.png",
+      "size": [
+        493,
+        465
+      ],
+      "sourceRect": [
+        0,
+        0,
+        512,
+        530
+      ],
+      "pivot": [
+        0.5,
+        0.94
+      ],
+      "trimBounds": "493x465+16+56",
+      "unityPivot": [
+        0.5,
+        0.06
+      ],
+      "source": "source/buildings-isometric-v2.png"
+    },
+    {
+      "id": "command",
+      "file": "assets/lobby/modular/buildings/command.png",
+      "size": [
+        488,
+        460
+      ],
+      "sourceRect": [
+        512,
+        0,
+        512,
+        530
+      ],
+      "pivot": [
+        0.5,
+        0.94
+      ],
+      "trimBounds": "488x460+13+69",
+      "unityPivot": [
+        0.5,
+        0.06
+      ],
+      "source": "source/buildings-isometric-v2.png"
+    },
+    {
+      "id": "medical",
+      "file": "assets/lobby/modular/buildings/medical.png",
+      "size": [
+        493,
+        446
+      ],
+      "sourceRect": [
+        0,
+        530,
+        512,
+        482
+      ],
+      "pivot": [
+        0.5,
+        0.94
+      ],
+      "trimBounds": "493x446+16+4",
+      "unityPivot": [
+        0.5,
+        0.06
+      ],
+      "source": "source/buildings-isometric-v2.png"
+    },
+    {
+      "id": "supply",
+      "file": "assets/lobby/modular/buildings/supply.png",
+      "size": [
+        488,
+        459
+      ],
+      "sourceRect": [
+        512,
+        530,
+        512,
+        482
+      ],
+      "pivot": [
+        0.5,
+        0.94
+      ],
+      "trimBounds": "488x459+13+4",
+      "unityPivot": [
+        0.5,
+        0.06
+      ],
+      "source": "source/buildings-isometric-v2.png"
+    },
+    {
+      "id": "lounge",
+      "file": "assets/lobby/modular/buildings/lounge.png",
+      "size": [
+        500,
+        464
+      ],
+      "sourceRect": [
+        0,
+        1012,
+        512,
+        524
+      ],
+      "pivot": [
+        0.5,
+        0.94
+      ],
+      "trimBounds": "500x464+12+18",
+      "unityPivot": [
+        0.5,
+        0.06
+      ],
+      "source": "source/buildings-isometric-v2.png"
+    },
+    {
+      "id": "deploy",
+      "file": "assets/lobby/modular/buildings/deploy.png",
+      "size": [
+        500,
+        451
+      ],
+      "sourceRect": [
+        512,
+        1012,
+        512,
+        524
+      ],
+      "pivot": [
+        0.5,
+        0.94
+      ],
+      "trimBounds": "500x451+0+20",
+      "unityPivot": [
+        0.5,
+        0.06
+      ],
+      "source": "source/buildings-isometric-v2.png"
+    },
+    {
+      "id": "tree-green",
+      "file": "assets/lobby/modular/props/tree-green.png",
+      "size": [
+        383,
+        407
+      ],
+      "sourceRect": [
+        0,
+        0,
+        444,
+        444
+      ],
+      "pivot": [
+        0.5,
+        0.94
+      ],
+      "trimBounds": "383x407+32+10",
+      "unityPivot": [
+        0.5,
+        0.06
+      ]
+    },
+    {
+      "id": "tree-pink",
+      "file": "assets/lobby/modular/props/tree-pink.png",
+      "size": [
+        403,
+        404
+      ],
+      "sourceRect": [
+        444,
+        0,
+        443,
+        444
+      ],
+      "pivot": [
+        0.5,
+        0.94
+      ],
+      "trimBounds": "403x404+25+21",
+      "unityPivot": [
+        0.5,
+        0.06
+      ]
+    },
+    {
+      "id": "lamp-amber",
+      "file": "assets/lobby/modular/props/lamp-amber.png",
+      "size": [
+        104,
+        411
+      ],
+      "sourceRect": [
+        887,
+        0,
+        443,
+        444
+      ],
+      "pivot": [
+        0.5,
+        0.94
+      ],
+      "trimBounds": "104x411+184+11",
+      "unityPivot": [
+        0.5,
+        0.06
+      ]
+    },
+    {
+      "id": "lamp-cyan",
+      "file": "assets/lobby/modular/props/lamp-cyan.png",
+      "size": [
+        145,
+        257
+      ],
+      "sourceRect": [
+        1330,
+        0,
+        444,
+        444
+      ],
+      "pivot": [
+        0.5,
+        0.94
+      ],
+      "trimBounds": "145x257+153+139",
+      "unityPivot": [
+        0.5,
+        0.06
+      ]
+    },
+    {
+      "id": "crates",
+      "file": "assets/lobby/modular/props/crates.png",
+      "size": [
+        356,
+        358
+      ],
+      "sourceRect": [
+        0,
+        444,
+        444,
+        443
+      ],
+      "pivot": [
+        0.5,
+        0.94
+      ],
+      "trimBounds": "356x358+48+46",
+      "unityPivot": [
+        0.5,
+        0.06
+      ]
+    },
+    {
+      "id": "bench",
+      "file": "assets/lobby/modular/props/bench.png",
+      "size": [
+        384,
+        336
+      ],
+      "sourceRect": [
+        444,
+        444,
+        443,
+        443
+      ],
+      "pivot": [
+        0.5,
+        0.94
+      ],
+      "trimBounds": "384x336+19+63",
+      "unityPivot": [
+        0.5,
+        0.06
+      ]
+    },
+    {
+      "id": "planter",
+      "file": "assets/lobby/modular/props/planter.png",
+      "size": [
+        374,
+        364
+      ],
+      "sourceRect": [
+        887,
+        444,
+        443,
+        443
+      ],
+      "pivot": [
+        0.5,
+        0.94
+      ],
+      "trimBounds": "374x364+27+28",
+      "unityPivot": [
+        0.5,
+        0.06
+      ]
+    },
+    {
+      "id": "sector-gate",
+      "file": "assets/lobby/modular/props/sector-gate.png",
+      "size": [
+        395,
+        410
+      ],
+      "sourceRect": [
+        1330,
+        444,
+        444,
+        443
+      ],
+      "pivot": [
+        0.5,
+        0.94
+      ],
+      "trimBounds": "395x410+29+5",
+      "unityPivot": [
+        0.5,
+        0.06
+      ]
+    },
+    {
+      "id": "grass",
+      "file": "assets/lobby/modular/tiles/grass.png",
+      "size": [
+        568,
+        291
+      ],
+      "sourceRect": [
+        0,
+        0,
+        627,
+        627
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "trimBounds": "568x291+29+197",
+      "unityPivot": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "path",
+      "file": "assets/lobby/modular/tiles/path.png",
+      "size": [
+        568,
+        290
+      ],
+      "sourceRect": [
+        627,
+        0,
+        627,
+        627
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "trimBounds": "568x290+29+194",
+      "unityPivot": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "flowers",
+      "file": "assets/lobby/modular/tiles/flowers.png",
+      "size": [
+        568,
+        291
+      ],
+      "sourceRect": [
+        0,
+        627,
+        627,
+        627
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "trimBounds": "568x291+29+180",
+      "unityPivot": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "water",
+      "file": "assets/lobby/modular/tiles/water.png",
+      "size": [
+        568,
+        291
+      ],
+      "sourceRect": [
+        627,
+        627,
+        627,
+        627
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "trimBounds": "568x291+30+180",
+      "unityPivot": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "id": "down-01",
+      "file": "assets/lobby/modular/pilot/down-01.png",
+      "size": [
+        314,
+        314
+      ],
+      "sourceRect": [
+        0,
+        0,
+        314,
+        314
+      ],
+      "pivot": [
+        0.5,
+        0.94
+      ],
+      "unityPivot": [
+        0.5,
+        0.02
+      ]
+    },
+    {
+      "id": "down-02",
+      "file": "assets/lobby/modular/pilot/down-02.png",
+      "size": [
+        313,
+        314
+      ],
+      "sourceRect": [
+        314,
+        0,
+        313,
+        314
+      ],
+      "pivot": [
+        0.5,
+        0.94
+      ],
+      "unityPivot": [
+        0.5,
+        0.02
+      ]
+    },
+    {
+      "id": "down-03",
+      "file": "assets/lobby/modular/pilot/down-03.png",
+      "size": [
+        313,
+        314
+      ],
+      "sourceRect": [
+        627,
+        0,
+        313,
+        314
+      ],
+      "pivot": [
+        0.5,
+        0.94
+      ],
+      "unityPivot": [
+        0.5,
+        0.02
+      ]
+    },
+    {
+      "id": "down-04",
+      "file": "assets/lobby/modular/pilot/down-04.png",
+      "size": [
+        314,
+        314
+      ],
+      "sourceRect": [
+        940,
+        0,
+        314,
+        314
+      ],
+      "pivot": [
+        0.5,
+        0.94
+      ],
+      "unityPivot": [
+        0.5,
+        0.02
+      ]
+    },
+    {
+      "id": "left-01",
+      "file": "assets/lobby/modular/pilot/left-01.png",
+      "size": [
+        314,
+        313
+      ],
+      "sourceRect": [
+        0,
+        314,
+        314,
+        313
+      ],
+      "pivot": [
+        0.5,
+        0.94
+      ],
+      "unityPivot": [
+        0.5,
+        0.02
+      ]
+    },
+    {
+      "id": "left-02",
+      "file": "assets/lobby/modular/pilot/left-02.png",
+      "size": [
+        313,
+        313
+      ],
+      "sourceRect": [
+        314,
+        314,
+        313,
+        313
+      ],
+      "pivot": [
+        0.5,
+        0.94
+      ],
+      "unityPivot": [
+        0.5,
+        0.02
+      ]
+    },
+    {
+      "id": "left-03",
+      "file": "assets/lobby/modular/pilot/left-03.png",
+      "size": [
+        313,
+        313
+      ],
+      "sourceRect": [
+        627,
+        314,
+        313,
+        313
+      ],
+      "pivot": [
+        0.5,
+        0.94
+      ],
+      "unityPivot": [
+        0.5,
+        0.02
+      ]
+    },
+    {
+      "id": "left-04",
+      "file": "assets/lobby/modular/pilot/left-04.png",
+      "size": [
+        314,
+        313
+      ],
+      "sourceRect": [
+        940,
+        314,
+        314,
+        313
+      ],
+      "pivot": [
+        0.5,
+        0.94
+      ],
+      "unityPivot": [
+        0.5,
+        0.02
+      ]
+    },
+    {
+      "id": "right-01",
+      "file": "assets/lobby/modular/pilot/right-01.png",
+      "size": [
+        314,
+        313
+      ],
+      "sourceRect": [
+        0,
+        627,
+        314,
+        313
+      ],
+      "pivot": [
+        0.5,
+        0.94
+      ],
+      "unityPivot": [
+        0.5,
+        0.02
+      ]
+    },
+    {
+      "id": "right-02",
+      "file": "assets/lobby/modular/pilot/right-02.png",
+      "size": [
+        313,
+        313
+      ],
+      "sourceRect": [
+        314,
+        627,
+        313,
+        313
+      ],
+      "pivot": [
+        0.5,
+        0.94
+      ],
+      "unityPivot": [
+        0.5,
+        0.02
+      ]
+    },
+    {
+      "id": "right-03",
+      "file": "assets/lobby/modular/pilot/right-03.png",
+      "size": [
+        313,
+        313
+      ],
+      "sourceRect": [
+        627,
+        627,
+        313,
+        313
+      ],
+      "pivot": [
+        0.5,
+        0.94
+      ],
+      "unityPivot": [
+        0.5,
+        0.02
+      ]
+    },
+    {
+      "id": "right-04",
+      "file": "assets/lobby/modular/pilot/right-04.png",
+      "size": [
+        314,
+        313
+      ],
+      "sourceRect": [
+        940,
+        627,
+        314,
+        313
+      ],
+      "pivot": [
+        0.5,
+        0.94
+      ],
+      "unityPivot": [
+        0.5,
+        0.02
+      ]
+    },
+    {
+      "id": "up-01",
+      "file": "assets/lobby/modular/pilot/up-01.png",
+      "size": [
+        314,
+        314
+      ],
+      "sourceRect": [
+        0,
+        940,
+        314,
+        314
+      ],
+      "pivot": [
+        0.5,
+        0.94
+      ],
+      "unityPivot": [
+        0.5,
+        0.02
+      ]
+    },
+    {
+      "id": "up-02",
+      "file": "assets/lobby/modular/pilot/up-02.png",
+      "size": [
+        313,
+        314
+      ],
+      "sourceRect": [
+        314,
+        940,
+        313,
+        314
+      ],
+      "pivot": [
+        0.5,
+        0.94
+      ],
+      "unityPivot": [
+        0.5,
+        0.02
+      ]
+    },
+    {
+      "id": "up-03",
+      "file": "assets/lobby/modular/pilot/up-03.png",
+      "size": [
+        313,
+        314
+      ],
+      "sourceRect": [
+        627,
+        940,
+        313,
+        314
+      ],
+      "pivot": [
+        0.5,
+        0.94
+      ],
+      "unityPivot": [
+        0.5,
+        0.02
+      ]
+    },
+    {
+      "id": "up-04",
+      "file": "assets/lobby/modular/pilot/up-04.png",
+      "size": [
+        314,
+        314
+      ],
+      "sourceRect": [
+        940,
+        940,
+        314,
+        314
+      ],
+      "pivot": [
+        0.5,
+        0.94
+      ],
+      "unityPivot": [
+        0.5,
+        0.02
+      ]
+    },
+    {
+      "id": "cliff-bank",
+      "file": "assets/lobby/modular/props/cliff-bank.png",
+      "size": [
+        616,
+        441
+      ],
+      "sourceRect": [
+        0,
+        0,
+        637,
+        618
+      ],
+      "trimBounds": "616x441+14+119",
+      "pivot": [
+        0.5,
+        0.94
+      ],
+      "unityPivot": [
+        0.5,
+        0.06
+      ]
+    },
+    {
+      "id": "waterfall",
+      "file": "assets/lobby/modular/props/waterfall.png",
+      "size": [
+        612,
+        575
+      ],
+      "sourceRect": [
+        637,
+        0,
+        637,
+        618
+      ],
+      "trimBounds": "612x575+12+18",
+      "pivot": [
+        0.5,
+        0.94
+      ],
+      "unityPivot": [
+        0.5,
+        0.06
+      ]
+    },
+    {
+      "id": "garden-pond",
+      "file": "assets/lobby/modular/props/garden-pond.png",
+      "size": [
+        612,
+        492
+      ],
+      "sourceRect": [
+        0,
+        618,
+        637,
+        617
+      ],
+      "trimBounds": "612x492+16+67",
+      "pivot": [
+        0.5,
+        0.94
+      ],
+      "unityPivot": [
+        0.5,
+        0.06
+      ]
+    },
+    {
+      "id": "garden-terrace",
+      "file": "assets/lobby/modular/props/garden-terrace.png",
+      "size": [
+        617,
+        503
+      ],
+      "sourceRect": [
+        637,
+        618,
+        637,
+        617
+      ],
+      "trimBounds": "617x503+10+37",
+      "pivot": [
+        0.5,
+        0.94
+      ],
+      "unityPivot": [
+        0.5,
+        0.06
+      ]
+    }
+  ],
+  "pivotConvention": "pivot is top-left normalized; unityPivot is bottom-left normalized"
+}

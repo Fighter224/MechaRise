@@ -1,0 +1,1717 @@
+{
+  "idle": [
+    {
+      "file": "frames/idle/idle_01.png",
+      "source_box": [
+        330,
+        42,
+        401,
+        110
+      ],
+      "size": [
+        57,
+        71
+      ]
+    },
+    {
+      "file": "frames/idle/idle_02.png",
+      "source_box": [
+        401,
+        42,
+        477,
+        110
+      ],
+      "size": [
+        56,
+        71
+      ]
+    },
+    {
+      "file": "frames/idle/idle_03.png",
+      "source_box": [
+        477,
+        42,
+        551,
+        110
+      ],
+      "size": [
+        59,
+        71
+      ]
+    },
+    {
+      "file": "frames/idle/idle_04.png",
+      "source_box": [
+        551,
+        42,
+        626,
+        110
+      ],
+      "size": [
+        57,
+        72
+      ]
+    },
+    {
+      "file": "frames/idle/idle_05.png",
+      "source_box": [
+        626,
+        42,
+        701,
+        110
+      ],
+      "size": [
+        58,
+        72
+      ]
+    },
+    {
+      "file": "frames/idle/idle_06.png",
+      "source_box": [
+        701,
+        42,
+        777,
+        110
+      ],
+      "size": [
+        58,
+        71
+      ]
+    },
+    {
+      "file": "frames/idle/idle_07.png",
+      "source_box": [
+        777,
+        42,
+        850,
+        110
+      ],
+      "size": [
+        60,
+        72
+      ]
+    }
+  ],
+  "walk": [
+    {
+      "file": "frames/walk/walk_01.png",
+      "source_box": [
+        925,
+        43,
+        991,
+        110
+      ],
+      "size": [
+        58,
+        68
+      ]
+    },
+    {
+      "file": "frames/walk/walk_02.png",
+      "source_box": [
+        991,
+        43,
+        1061,
+        110
+      ],
+      "size": [
+        51,
+        68
+      ]
+    },
+    {
+      "file": "frames/walk/walk_03.png",
+      "source_box": [
+        1061,
+        43,
+        1127,
+        110
+      ],
+      "size": [
+        52,
+        68
+      ]
+    },
+    {
+      "file": "frames/walk/walk_04.png",
+      "source_box": [
+        1127,
+        43,
+        1195,
+        110
+      ],
+      "size": [
+        60,
+        68
+      ]
+    },
+    {
+      "file": "frames/walk/walk_05.png",
+      "source_box": [
+        1195,
+        43,
+        1267,
+        110
+      ],
+      "size": [
+        63,
+        68
+      ]
+    },
+    {
+      "file": "frames/walk/walk_06.png",
+      "source_box": [
+        1267,
+        43,
+        1340,
+        110
+      ],
+      "size": [
+        63,
+        70
+      ]
+    },
+    {
+      "file": "frames/walk/walk_07.png",
+      "source_box": [
+        1340,
+        43,
+        1418,
+        110
+      ],
+      "size": [
+        61,
+        70
+      ]
+    },
+    {
+      "file": "frames/walk/walk_08.png",
+      "source_box": [
+        1418,
+        43,
+        1504,
+        110
+      ],
+      "size": [
+        59,
+        71
+      ]
+    }
+  ],
+  "run": [
+    {
+      "file": "frames/run/run_01.png",
+      "source_box": [
+        330,
+        151,
+        413,
+        217
+      ],
+      "size": [
+        72,
+        66
+      ]
+    },
+    {
+      "file": "frames/run/run_02.png",
+      "source_box": [
+        413,
+        151,
+        489,
+        217
+      ],
+      "size": [
+        65,
+        67
+      ]
+    },
+    {
+      "file": "frames/run/run_03.png",
+      "source_box": [
+        489,
+        151,
+        563,
+        217
+      ],
+      "size": [
+        65,
+        66
+      ]
+    },
+    {
+      "file": "frames/run/run_04.png",
+      "source_box": [
+        563,
+        151,
+        637,
+        217
+      ],
+      "size": [
+        81,
+        68
+      ]
+    },
+    {
+      "file": "frames/run/run_05.png",
+      "source_box": [
+        637,
+        151,
+        708,
+        217
+      ],
+      "size": [
+        61,
+        72
+      ]
+    },
+    {
+      "file": "frames/run/run_06.png",
+      "source_box": [
+        708,
+        151,
+        781,
+        217
+      ],
+      "size": [
+        61,
+        72
+      ]
+    },
+    {
+      "file": "frames/run/run_07.png",
+      "source_box": [
+        781,
+        151,
+        857,
+        217
+      ],
+      "size": [
+        65,
+        71
+      ]
+    },
+    {
+      "file": "frames/run/run_08.png",
+      "source_box": [
+        857,
+        151,
+        932,
+        217
+      ],
+      "size": [
+        70,
+        68
+      ]
+    }
+  ],
+  "dash_boost": [
+    {
+      "file": "frames/dash_boost/dash_boost_01.png",
+      "source_box": [
+        984,
+        156,
+        1065,
+        216
+      ],
+      "size": [
+        81,
+        61
+      ]
+    },
+    {
+      "file": "frames/dash_boost/dash_boost_02.png",
+      "source_box": [
+        1065,
+        156,
+        1150,
+        216
+      ],
+      "size": [
+        82,
+        59
+      ]
+    },
+    {
+      "file": "frames/dash_boost/dash_boost_03.png",
+      "source_box": [
+        1150,
+        156,
+        1236,
+        216
+      ],
+      "size": [
+        85,
+        58
+      ]
+    },
+    {
+      "file": "frames/dash_boost/dash_boost_04.png",
+      "source_box": [
+        1236,
+        156,
+        1321,
+        216
+      ],
+      "size": [
+        91,
+        56
+      ]
+    },
+    {
+      "file": "frames/dash_boost/dash_boost_05.png",
+      "source_box": [
+        1321,
+        156,
+        1417,
+        216
+      ],
+      "size": [
+        95,
+        53
+      ]
+    },
+    {
+      "file": "frames/dash_boost/dash_boost_06.png",
+      "source_box": [
+        1417,
+        156,
+        1515,
+        216
+      ],
+      "size": [
+        93,
+        52
+      ]
+    }
+  ],
+  "jump": [
+    {
+      "file": "frames/jump/jump_01.png",
+      "source_box": [
+        338,
+        247,
+        405,
+        320
+      ],
+      "size": [
+        46,
+        58
+      ]
+    },
+    {
+      "file": "frames/jump/jump_02.png",
+      "source_box": [
+        405,
+        247,
+        472,
+        320
+      ],
+      "size": [
+        72,
+        65
+      ]
+    },
+    {
+      "file": "frames/jump/jump_03.png",
+      "source_box": [
+        472,
+        247,
+        537,
+        320
+      ],
+      "size": [
+        49,
+        56
+      ]
+    },
+    {
+      "file": "frames/jump/jump_04.png",
+      "source_box": [
+        537,
+        247,
+        603,
+        320
+      ],
+      "size": [
+        52,
+        56
+      ]
+    },
+    {
+      "file": "frames/jump/jump_05.png",
+      "source_box": [
+        603,
+        247,
+        672,
+        320
+      ],
+      "size": [
+        55,
+        57
+      ]
+    },
+    {
+      "file": "frames/jump/jump_06.png",
+      "source_box": [
+        672,
+        247,
+        743,
+        320
+      ],
+      "size": [
+        55,
+        56
+      ]
+    },
+    {
+      "file": "frames/jump/jump_07.png",
+      "source_box": [
+        743,
+        247,
+        810,
+        320
+      ],
+      "size": [
+        48,
+        52
+      ]
+    },
+    {
+      "file": "frames/jump/jump_08.png",
+      "source_box": [
+        810,
+        247,
+        875,
+        320
+      ],
+      "size": [
+        62,
+        47
+      ]
+    }
+  ],
+  "fall": [
+    {
+      "file": "frames/fall/fall_01.png",
+      "source_box": [
+        919,
+        263,
+        985,
+        321
+      ],
+      "size": [
+        46,
+        54
+      ]
+    },
+    {
+      "file": "frames/fall/fall_02.png",
+      "source_box": [
+        985,
+        263,
+        1054,
+        321
+      ],
+      "size": [
+        46,
+        54
+      ]
+    },
+    {
+      "file": "frames/fall/fall_03.png",
+      "source_box": [
+        1054,
+        263,
+        1123,
+        321
+      ],
+      "size": [
+        43,
+        46
+      ]
+    },
+    {
+      "file": "frames/fall/fall_04.png",
+      "source_box": [
+        1123,
+        263,
+        1193,
+        321
+      ],
+      "size": [
+        44,
+        47
+      ]
+    }
+  ],
+  "land": [
+    {
+      "file": "frames/land/land_01.png",
+      "source_box": [
+        1231,
+        270,
+        1298,
+        322
+      ],
+      "size": [
+        46,
+        56
+      ]
+    },
+    {
+      "file": "frames/land/land_02.png",
+      "source_box": [
+        1298,
+        270,
+        1368,
+        322
+      ],
+      "size": [
+        63,
+        54
+      ]
+    },
+    {
+      "file": "frames/land/land_03.png",
+      "source_box": [
+        1368,
+        270,
+        1440,
+        322
+      ],
+      "size": [
+        65,
+        52
+      ]
+    },
+    {
+      "file": "frames/land/land_04.png",
+      "source_box": [
+        1440,
+        270,
+        1516,
+        322
+      ],
+      "size": [
+        69,
+        53
+      ]
+    }
+  ],
+  "crouch": [
+    {
+      "file": "frames/crouch/crouch_01.png",
+      "source_box": [
+        332,
+        365,
+        401,
+        419
+      ],
+      "size": [
+        47,
+        58
+      ]
+    },
+    {
+      "file": "frames/crouch/crouch_02.png",
+      "source_box": [
+        401,
+        365,
+        468,
+        419
+      ],
+      "size": [
+        48,
+        48
+      ]
+    },
+    {
+      "file": "frames/crouch/crouch_03.png",
+      "source_box": [
+        468,
+        365,
+        534,
+        419
+      ],
+      "size": [
+        45,
+        42
+      ]
+    },
+    {
+      "file": "frames/crouch/crouch_04.png",
+      "source_box": [
+        534,
+        365,
+        580,
+        419
+      ],
+      "size": [
+        45,
+        42
+      ]
+    }
+  ],
+  "crouch_walk": [
+    {
+      "file": "frames/crouch_walk/crouch_walk_01.png",
+      "source_box": [
+        621,
+        368,
+        687,
+        419
+      ],
+      "size": [
+        54,
+        54
+      ]
+    },
+    {
+      "file": "frames/crouch_walk/crouch_walk_02.png",
+      "source_box": [
+        687,
+        368,
+        752,
+        419
+      ],
+      "size": [
+        50,
+        46
+      ]
+    },
+    {
+      "file": "frames/crouch_walk/crouch_walk_03.png",
+      "source_box": [
+        752,
+        368,
+        817,
+        419
+      ],
+      "size": [
+        49,
+        47
+      ]
+    },
+    {
+      "file": "frames/crouch_walk/crouch_walk_04.png",
+      "source_box": [
+        817,
+        368,
+        881,
+        419
+      ],
+      "size": [
+        49,
+        47
+      ]
+    },
+    {
+      "file": "frames/crouch_walk/crouch_walk_05.png",
+      "source_box": [
+        881,
+        368,
+        947,
+        419
+      ],
+      "size": [
+        49,
+        47
+      ]
+    },
+    {
+      "file": "frames/crouch_walk/crouch_walk_06.png",
+      "source_box": [
+        947,
+        368,
+        1005,
+        419
+      ],
+      "size": [
+        50,
+        47
+      ]
+    }
+  ],
+  "dodge_evade": [
+    {
+      "file": "frames/dodge_evade/dodge_evade_01.png",
+      "source_box": [
+        1056,
+        364,
+        1130,
+        419
+      ],
+      "size": [
+        56,
+        55
+      ]
+    },
+    {
+      "file": "frames/dodge_evade/dodge_evade_02.png",
+      "source_box": [
+        1130,
+        364,
+        1206,
+        419
+      ],
+      "size": [
+        56,
+        54
+      ]
+    },
+    {
+      "file": "frames/dodge_evade/dodge_evade_03.png",
+      "source_box": [
+        1206,
+        364,
+        1284,
+        419
+      ],
+      "size": [
+        55,
+        51
+      ]
+    },
+    {
+      "file": "frames/dodge_evade/dodge_evade_04.png",
+      "source_box": [
+        1284,
+        364,
+        1360,
+        419
+      ],
+      "size": [
+        64,
+        51
+      ]
+    },
+    {
+      "file": "frames/dodge_evade/dodge_evade_05.png",
+      "source_box": [
+        1360,
+        364,
+        1435,
+        419
+      ],
+      "size": [
+        71,
+        55
+      ]
+    },
+    {
+      "file": "frames/dodge_evade/dodge_evade_06.png",
+      "source_box": [
+        1435,
+        364,
+        1514,
+        419
+      ],
+      "size": [
+        64,
+        54
+      ]
+    }
+  ],
+  "melee_combo": [
+    {
+      "file": "frames/melee_combo/melee_combo_01.png",
+      "source_box": [
+        330,
+        456,
+        398,
+        527
+      ],
+      "size": [
+        50,
+        59
+      ]
+    },
+    {
+      "file": "frames/melee_combo/melee_combo_02.png",
+      "source_box": [
+        398,
+        456,
+        463,
+        527
+      ],
+      "size": [
+        58,
+        53
+      ]
+    },
+    {
+      "file": "frames/melee_combo/melee_combo_03.png",
+      "source_box": [
+        463,
+        456,
+        529,
+        527
+      ],
+      "size": [
+        52,
+        58
+      ]
+    },
+    {
+      "file": "frames/melee_combo/melee_combo_04.png",
+      "source_box": [
+        529,
+        456,
+        593,
+        527
+      ],
+      "size": [
+        55,
+        56
+      ]
+    },
+    {
+      "file": "frames/melee_combo/melee_combo_05.png",
+      "source_box": [
+        593,
+        456,
+        674,
+        527
+      ],
+      "size": [
+        74,
+        59
+      ]
+    },
+    {
+      "file": "frames/melee_combo/melee_combo_06.png",
+      "source_box": [
+        674,
+        456,
+        806,
+        527
+      ],
+      "size": [
+        115,
+        77
+      ]
+    },
+    {
+      "file": "frames/melee_combo/melee_combo_07.png",
+      "source_box": [
+        806,
+        456,
+        929,
+        527
+      ],
+      "size": [
+        107,
+        71
+      ]
+    },
+    {
+      "file": "frames/melee_combo/melee_combo_08.png",
+      "source_box": [
+        929,
+        456,
+        978,
+        527
+      ],
+      "size": [
+        51,
+        54
+      ]
+    }
+  ],
+  "ranged_shoot": [
+    {
+      "file": "frames/ranged_shoot/ranged_shoot_01.png",
+      "source_box": [
+        1007,
+        470,
+        1070,
+        527
+      ],
+      "size": [
+        57,
+        59
+      ]
+    },
+    {
+      "file": "frames/ranged_shoot/ranged_shoot_02.png",
+      "source_box": [
+        1070,
+        470,
+        1131,
+        527
+      ],
+      "size": [
+        58,
+        59
+      ]
+    },
+    {
+      "file": "frames/ranged_shoot/ranged_shoot_03.png",
+      "source_box": [
+        1131,
+        470,
+        1193,
+        527
+      ],
+      "size": [
+        58,
+        59
+      ]
+    },
+    {
+      "file": "frames/ranged_shoot/ranged_shoot_04.png",
+      "source_box": [
+        1193,
+        470,
+        1256,
+        527
+      ],
+      "size": [
+        63,
+        59
+      ]
+    },
+    {
+      "file": "frames/ranged_shoot/ranged_shoot_05.png",
+      "source_box": [
+        1256,
+        470,
+        1320,
+        527
+      ],
+      "size": [
+        64,
+        59
+      ]
+    },
+    {
+      "file": "frames/ranged_shoot/ranged_shoot_06.png",
+      "source_box": [
+        1320,
+        470,
+        1396,
+        527
+      ],
+      "size": [
+        74,
+        59
+      ]
+    },
+    {
+      "file": "frames/ranged_shoot/ranged_shoot_07.png",
+      "source_box": [
+        1396,
+        470,
+        1460,
+        527
+      ],
+      "size": [
+        66,
+        59
+      ]
+    },
+    {
+      "file": "frames/ranged_shoot/ranged_shoot_08.png",
+      "source_box": [
+        1460,
+        470,
+        1524,
+        527
+      ],
+      "size": [
+        57,
+        59
+      ]
+    }
+  ],
+  "charged_shot": [
+    {
+      "file": "frames/charged_shot/charged_shot_01.png",
+      "source_box": [
+        332,
+        570,
+        393,
+        635
+      ],
+      "size": [
+        47,
+        61
+      ]
+    },
+    {
+      "file": "frames/charged_shot/charged_shot_02.png",
+      "source_box": [
+        393,
+        570,
+        455,
+        635
+      ],
+      "size": [
+        48,
+        61
+      ]
+    },
+    {
+      "file": "frames/charged_shot/charged_shot_03.png",
+      "source_box": [
+        455,
+        570,
+        520,
+        635
+      ],
+      "size": [
+        73,
+        61
+      ]
+    },
+    {
+      "file": "frames/charged_shot/charged_shot_04.png",
+      "source_box": [
+        520,
+        570,
+        582,
+        635
+      ],
+      "size": [
+        56,
+        65
+      ]
+    },
+    {
+      "file": "frames/charged_shot/charged_shot_05.png",
+      "source_box": [
+        582,
+        570,
+        647,
+        635
+      ],
+      "size": [
+        62,
+        68
+      ]
+    },
+    {
+      "file": "frames/charged_shot/charged_shot_06.png",
+      "source_box": [
+        647,
+        570,
+        830,
+        635
+      ],
+      "size": [
+        179,
+        71
+      ]
+    },
+    {
+      "file": "frames/charged_shot/charged_shot_07.png",
+      "source_box": [
+        830,
+        570,
+        933,
+        635
+      ],
+      "size": [
+        102,
+        61
+      ]
+    }
+  ],
+  "special_barrage": [
+    {
+      "file": "frames/special_barrage/special_barrage_01.png",
+      "source_box": [
+        963,
+        569,
+        1028,
+        635
+      ],
+      "size": [
+        50,
+        63
+      ]
+    },
+    {
+      "file": "frames/special_barrage/special_barrage_02.png",
+      "source_box": [
+        1028,
+        569,
+        1112,
+        635
+      ],
+      "size": [
+        72,
+        69
+      ]
+    },
+    {
+      "file": "frames/special_barrage/special_barrage_03.png",
+      "source_box": [
+        1112,
+        569,
+        1220,
+        635
+      ],
+      "size": [
+        86,
+        63
+      ]
+    },
+    {
+      "file": "frames/special_barrage/special_barrage_04.png",
+      "source_box": [
+        1220,
+        569,
+        1337,
+        635
+      ],
+      "size": [
+        109,
+        65
+      ]
+    },
+    {
+      "file": "frames/special_barrage/special_barrage_05.png",
+      "source_box": [
+        1337,
+        569,
+        1453,
+        635
+      ],
+      "size": [
+        101,
+        70
+      ]
+    },
+    {
+      "file": "frames/special_barrage/special_barrage_06.png",
+      "source_box": [
+        1453,
+        569,
+        1510,
+        635
+      ],
+      "size": [
+        48,
+        62
+      ]
+    }
+  ],
+  "aerial_attack": [
+    {
+      "file": "frames/aerial_attack/aerial_attack_01.png",
+      "source_box": [
+        328,
+        691,
+        390,
+        777
+      ],
+      "size": [
+        46,
+        61
+      ]
+    },
+    {
+      "file": "frames/aerial_attack/aerial_attack_02.png",
+      "source_box": [
+        390,
+        691,
+        451,
+        777
+      ],
+      "size": [
+        47,
+        61
+      ]
+    },
+    {
+      "file": "frames/aerial_attack/aerial_attack_03.png",
+      "source_box": [
+        451,
+        691,
+        514,
+        777
+      ],
+      "size": [
+        59,
+        74
+      ]
+    },
+    {
+      "file": "frames/aerial_attack/aerial_attack_04.png",
+      "source_box": [
+        514,
+        691,
+        579,
+        777
+      ],
+      "size": [
+        67,
+        80
+      ]
+    }
+  ],
+  "ground_slam": [
+    {
+      "file": "frames/ground_slam/ground_slam_01.png",
+      "source_box": [
+        600,
+        687,
+        639,
+        777
+      ],
+      "size": [
+        44,
+        53
+      ]
+    },
+    {
+      "file": "frames/ground_slam/ground_slam_02.png",
+      "source_box": [
+        639,
+        687,
+        704,
+        777
+      ],
+      "size": [
+        67,
+        94
+      ]
+    },
+    {
+      "file": "frames/ground_slam/ground_slam_03.png",
+      "source_box": [
+        704,
+        687,
+        774,
+        777
+      ],
+      "size": [
+        72,
+        84
+      ]
+    },
+    {
+      "file": "frames/ground_slam/ground_slam_04.png",
+      "source_box": [
+        774,
+        687,
+        852,
+        777
+      ],
+      "size": [
+        78,
+        78
+      ]
+    },
+    {
+      "file": "frames/ground_slam/ground_slam_05.png",
+      "source_box": [
+        852,
+        687,
+        921,
+        777
+      ],
+      "size": [
+        70,
+        51
+      ]
+    }
+  ],
+  "ultimate_orbital_strike": [
+    {
+      "file": "frames/ultimate_orbital_strike/ultimate_orbital_strike_01.png",
+      "source_box": [
+        951,
+        676,
+        1013,
+        774
+      ],
+      "size": [
+        46,
+        73
+      ]
+    },
+    {
+      "file": "frames/ultimate_orbital_strike/ultimate_orbital_strike_02.png",
+      "source_box": [
+        1013,
+        676,
+        1097,
+        774
+      ],
+      "size": [
+        72,
+        80
+      ]
+    },
+    {
+      "file": "frames/ultimate_orbital_strike/ultimate_orbital_strike_03.png",
+      "source_box": [
+        1097,
+        676,
+        1196,
+        774
+      ],
+      "size": [
+        91,
+        92
+      ]
+    },
+    {
+      "file": "frames/ultimate_orbital_strike/ultimate_orbital_strike_04.png",
+      "source_box": [
+        1196,
+        676,
+        1295,
+        774
+      ],
+      "size": [
+        98,
+        102
+      ]
+    },
+    {
+      "file": "frames/ultimate_orbital_strike/ultimate_orbital_strike_05.png",
+      "source_box": [
+        1295,
+        676,
+        1395,
+        774
+      ],
+      "size": [
+        101,
+        106
+      ]
+    },
+    {
+      "file": "frames/ultimate_orbital_strike/ultimate_orbital_strike_06.png",
+      "source_box": [
+        1395,
+        676,
+        1519,
+        774
+      ],
+      "size": [
+        124,
+        106
+      ]
+    }
+  ],
+  "effects": [
+    {
+      "file": "frames/effects/effects_01.png",
+      "source_box": [
+        30,
+        883,
+        82,
+        974
+      ],
+      "size": [
+        50,
+        18
+      ]
+    },
+    {
+      "file": "frames/effects/effects_02.png",
+      "source_box": [
+        82,
+        883,
+        149,
+        974
+      ],
+      "size": [
+        66,
+        28
+      ]
+    },
+    {
+      "file": "frames/effects/effects_03.png",
+      "source_box": [
+        149,
+        883,
+        236,
+        974
+      ],
+      "size": [
+        87,
+        26
+      ]
+    },
+    {
+      "file": "frames/effects/effects_04.png",
+      "source_box": [
+        236,
+        883,
+        298,
+        974
+      ],
+      "size": [
+        53,
+        49
+      ]
+    },
+    {
+      "file": "frames/effects/effects_05.png",
+      "source_box": [
+        298,
+        883,
+        377,
+        974
+      ],
+      "size": [
+        74,
+        77
+      ]
+    },
+    {
+      "file": "frames/effects/effects_06.png",
+      "source_box": [
+        377,
+        883,
+        439,
+        974
+      ],
+      "size": [
+        62,
+        71
+      ]
+    },
+    {
+      "file": "frames/effects/effects_07.png",
+      "source_box": [
+        439,
+        883,
+        529,
+        974
+      ],
+      "size": [
+        98,
+        81
+      ]
+    },
+    {
+      "file": "frames/effects/effects_08.png",
+      "source_box": [
+        529,
+        883,
+        598,
+        974
+      ],
+      "size": [
+        77,
+        68
+      ]
+    },
+    {
+      "file": "frames/effects/effects_09.png",
+      "source_box": [
+        598,
+        883,
+        661,
+        974
+      ],
+      "size": [
+        61,
+        65
+      ]
+    },
+    {
+      "file": "frames/effects/effects_10.png",
+      "source_box": [
+        661,
+        883,
+        748,
+        974
+      ],
+      "size": [
+        88,
+        88
+      ]
+    },
+    {
+      "file": "frames/effects/effects_11.png",
+      "source_box": [
+        748,
+        883,
+        802,
+        974
+      ],
+      "size": [
+        45,
+        81
+      ]
+    },
+    {
+      "file": "frames/effects/effects_12.png",
+      "source_box": [
+        802,
+        883,
+        863,
+        974
+      ],
+      "size": [
+        59,
+        79
+      ]
+    },
+    {
+      "file": "frames/effects/effects_13.png",
+      "source_box": [
+        863,
+        883,
+        931,
+        974
+      ],
+      "size": [
+        63,
+        86
+      ]
+    },
+    {
+      "file": "frames/effects/effects_14.png",
+      "source_box": [
+        931,
+        883,
+        1034,
+        974
+      ],
+      "size": [
+        95,
+        82
+      ]
+    },
+    {
+      "file": "frames/effects/effects_15.png",
+      "source_box": [
+        1034,
+        883,
+        1105,
+        974
+      ],
+      "size": [
+        68,
+        78
+      ]
+    },
+    {
+      "file": "frames/effects/effects_16.png",
+      "source_box": [
+        1105,
+        883,
+        1194,
+        974
+      ],
+      "size": [
+        74,
+        73
+      ]
+    },
+    {
+      "file": "frames/effects/effects_17.png",
+      "source_box": [
+        1194,
+        883,
+        1300,
+        974
+      ],
+      "size": [
+        96,
+        57
+      ]
+    },
+    {
+      "file": "frames/effects/effects_18.png",
+      "source_box": [
+        1300,
+        883,
+        1408,
+        974
+      ],
+      "size": [
+        102,
+        80
+      ]
+    },
+    {
+      "file": "frames/effects/effects_19.png",
+      "source_box": [
+        1408,
+        883,
+        1516,
+        974
+      ],
+      "size": [
+        101,
+        89
+      ]
+    }
+  ],
+  "portraits": [
+    {
+      "file": "frames/portraits/valhalla_full.png",
+      "source_box": [
+        13,
+        75,
+        277,
+        437
+      ],
+      "size": [
+        263,
+        369
+      ]
+    },
+    {
+      "file": "frames/portraits/valhalla_front.png",
+      "source_box": [
+        27,
+        441,
+        109,
+        555
+      ],
+      "size": [
+        74,
+        114
+      ]
+    },
+    {
+      "file": "frames/portraits/valhalla_side.png",
+      "source_box": [
+        124,
+        441,
+        181,
+        555
+      ],
+      "size": [
+        50,
+        118
+      ]
+    },
+    {
+      "file": "frames/portraits/valhalla_back.png",
+      "source_box": [
+        198,
+        439,
+        283,
+        555
+      ],
+      "size": [
+        86,
+        116
+      ]
+    },
+    {
+      "file": "frames/portraits/valhalla_preview.png",
+      "source_box": [
+        24,
+        692,
+        149,
+        825
+      ],
+      "size": [
+        118,
+        136
+      ]
+    }
+  ]
+}

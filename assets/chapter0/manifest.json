@@ -1,0 +1,61 @@
+{
+  "chapter": 0,
+  "name": "The Last Signal",
+  "generation": "Built-in image generation",
+  "assets": [
+    {
+      "id": "arrival-corridor",
+      "file": "arrival-corridor.png",
+      "size": [
+        1672,
+        941
+      ],
+      "transparent": false
+    },
+    {
+      "id": "evacuation-transport",
+      "file": "evacuation-transport.png",
+      "size": [
+        778,
+        398
+      ],
+      "transparent": true
+    },
+    {
+      "id": "hostile-interceptor",
+      "file": "hostile-interceptor.png",
+      "size": [
+        625,
+        449
+      ],
+      "transparent": true
+    },
+    {
+      "id": "maintenance-bay",
+      "file": "maintenance-bay.png",
+      "size": [
+        1672,
+        941
+      ],
+      "transparent": false
+    },
+    {
+      "id": "mender",
+      "file": "mender.png",
+      "size": [
+        1161,
+        1355
+      ],
+      "transparent": true
+    },
+    {
+      "id": "pilot-interceptor",
+      "file": "pilot-interceptor.png",
+      "size": [
+        557,
+        439
+      ],
+      "transparent": true
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "chapter": 1,
+  "backgrounds": [
+    {
+      "order": 1,
+      "file": "ch01_bg_01_industrial_hangar.png",
+      "width": 2172,
+      "height": 724
+    },
+    {
+      "order": 2,
+      "file": "ch01_bg_02_mech_chamber.png",
+      "width": 2172,
+      "height": 724
+    },
+    {
+      "order": 3,
+      "file": "ch01_bg_03_damaged_corridor.png",
+      "width": 2172,
+      "height": 724
+    },
+    {
+      "order": 4,
+      "file": "ch01_bg_04_reactor_chasm.png",
+      "width": 2172,
+      "height": 724
+    },
+    {
+      "order": 5,
+      "file": "ch01_bg_05_sunset_city_ruins.png",
+      "width": 2172,
+      "height": 724
+    },
+    {
+      "order": 6,
+      "file": "ch01_bg_06_eclipse_wasteland.png",
+      "width": 2172,
+      "height": 724
+    }
+  ]
+}

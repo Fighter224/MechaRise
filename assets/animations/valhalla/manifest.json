@@ -1,0 +1,118 @@
+{
+  "character": "GX-01 Valhalla",
+  "atlas": "mobility-combat-atlas.png",
+  "width": 1536,
+  "height": 1024,
+  "columns": 6,
+  "rows": 4,
+  "cellWidth": 256,
+  "cellHeight": 256,
+  "alpha": true,
+  "sourceFacing": "right",
+  "leftFacing": "horizontal mirror at render time",
+  "animations": {
+    "walk": {
+      "row": 0,
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "fps": 12,
+      "loop": true
+    },
+    "shoot": {
+      "row": 1,
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "fps": 18,
+      "loop": false,
+      "fireFrame": 2
+    },
+    "jump": {
+      "row": 2,
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "fps": 12,
+      "loop": false
+    },
+    "fly": {
+      "row": 3,
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "fps": 14,
+      "loop": true
+    },
+    "fall": {
+      "row": 2,
+      "frames": [
+        4
+      ],
+      "loop": true
+    },
+    "land": {
+      "row": 2,
+      "frames": [
+        5,
+        0,
+        1
+      ],
+      "fps": 14,
+      "loop": false
+    }
+  },
+  "additionalAtlases": [
+    {
+      "atlas": "idle-combat-atlas.png",
+      "columns": 6,
+      "rows": 4,
+      "cellWidth": 256,
+      "cellHeight": 256,
+      "animations": {
+        "idle": {
+          "row": 0,
+          "fps": 6,
+          "loop": true
+        },
+        "slash": {
+          "row": 1,
+          "fps": 12,
+          "hitFrames": [
+            2,
+            3
+          ]
+        },
+        "charged_shot": {
+          "row": 2,
+          "fps": 9.23,
+          "fireFrame": 3
+        },
+        "evade": {
+          "row": 3,
+          "fps": 15
+        }
+      }
+    }
+  ]
+}

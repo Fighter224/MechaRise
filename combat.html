@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MechaRise — GX-01 VALHALLA</title>
+  <link rel="stylesheet" href="style.css?v=4">
+</head>
+<body>
+  <main class="mission-heading"><span>CHAPTER 01 / OPERATION IRON DAWN</span><span>GX SERIES · TACTICAL ACTION</span></main>
+  <div id="game-shell">
+    <!-- Top HUD -->
+    <header class="top-hud">
+      <div class="hud-left">
+        <div class="logo-badge">MECHARISE</div>
+        <div class="sector-info">
+          <span id="sector-title">SECTOR 01: INDUSTRIAL HANGAR</span>
+          <span id="wave-info">HOSTILES: 3</span>
+        </div>
+      </div>
+
+      <div class="hud-center">
+        <div class="stage-pills" id="stage-pills">
+          <button class="stage-pill active" data-stage="0">1</button>
+          <button class="stage-pill" data-stage="1">2</button>
+          <button class="stage-pill" data-stage="2">3</button>
+          <button class="stage-pill" data-stage="3">4</button>
+          <button class="stage-pill" data-stage="4">5</button>
+          <button class="stage-pill" data-stage="5">6</button>
+        </div>
+      </div>
+
+      <div class="hud-right"><a href="animations.html" class="utility-button" style="text-decoration:none">ANIMATIONS</a><a href="index.html" class="utility-button" style="text-decoration:none">← BASE</a><button id="pause-button" class="utility-button" aria-label="Pause mission">Ⅱ PAUSE</button>
+        <div class="rpg-stats">
+          <span>LV.<strong id="stat-lv">1</strong></span>
+          <span>SCRAP: <strong id="stat-scrap">0</strong></span>
+          <span>STATE: <strong id="stat-state">IDLE</strong></span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main 2D Action RPG Viewport -->
+    <div class="viewport-wrapper">
+      <canvas id="game-canvas" width="1086" height="540"></canvas>
+
+      <!-- Player Mech HUD Overlay (Top-Left) -->
+      <div class="player-hud">
+        <div class="mech-portrait">
+          <img src="assets/frames/portraits/valhalla_full.png" alt="GX-01 Valhalla">
+        </div>
+        <div class="mech-bars">
+          <div class="mech-name">GX-01 "VALHALLA"</div>
+          <div class="bar-row">
+            <span class="lbl">HP</span>
+            <div class="track"><div id="hp-fill" class="fill hp" style="width:100%"></div></div>
+            <span class="val" id="hp-text">500/500</span>
+          </div>
+          <div class="bar-row">
+            <span class="lbl">EN</span>
+            <div class="track"><div id="en-fill" class="fill en" style="width:100%"></div></div>
+            <span class="val" id="en-text">100/100</span>
+          </div>
+          <div class="bar-row">
+            <span class="lbl">HT</span>
+            <div class="track"><div id="heat-fill" class="fill heat" style="width:0%"></div></div>
+            <span class="val" id="heat-text">0%</span>
+          </div>
+          <div class="bar-row">
+            <span class="lbl">OD</span>
+            <div class="track"><div id="od-fill" class="fill od" style="width:0%"></div></div>
+            <span class="val" id="od-text">0%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Boss / Target HUD (Top-Right, shown when boss or enemy active) -->
+      <div class="boss-hud hidden" id="boss-hud">
+        <div class="boss-name" id="boss-name">AEGIS COLOSSUS MK-IV</div>
+        <div class="track boss-track"><div id="boss-hp-fill" class="fill boss" style="width:100%"></div></div>
+        <div class="boss-sub" id="boss-hp-text">2000 / 2000</div>
+      </div>
+
+      <!-- Stage Clear / Game Over Banner -->
+      <div class="center-banner hidden" id="center-banner">
+        <h2 id="banner-title">SECTOR CLEARED</h2>
+        <p id="banner-sub">Press [ENTER] to advance to next sector</p>
+      </div>
+
+      <div id="mission-overlay" class="mission-overlay">
+        <section class="briefing" aria-labelledby="mission-title">
+          <div class="eyebrow" id="mission-eyebrow">VALHALLA SYSTEMS / CONNECTING</div>
+          <h1 id="mission-title">IRON<br><em>DAWN.</em></h1>
+          <p id="mission-description">Take back the industrial hangar. Break enemy armor, manage your energy, and push through six hostile sectors.</p>
+          <div class="briefing-controls"><span><kbd>A D</kbd> MOVE</span><span><kbd>SPACE</kbd> JUMP</span><span><kbd>J</kbd> BLADE</span><span><kbd>U</kbd> FIRE</span></div>
+          <button id="mission-action" disabled>LOADING SYSTEMS…</button>
+          <small>Hold F to fly · W/S altitude · ESC to pause</small>
+        </section>
+      </div>
+      <div class="scanlines"></div>
+    </div>
+
+    <div class="loadout"><div><span class="eyebrow">WEAPON SYSTEMS</span><strong>VALHALLA / ASSAULT FRAME</strong></div><div class="skill" data-cost="8"><kbd>U</kbd><span>PULSE RIFLE<small>8 ENERGY</small></span></div><div class="skill" data-cost="25"><kbd>I</kbd><span>RAIL CANNON<small>25 ENERGY</small></span></div><div class="skill" data-cost="35"><kbd>O</kbd><span>BURST SALVO<small>35 ENERGY</small></span></div><div class="skill ultimate" data-cost="100"><kbd>P</kbd><span>ORBITAL STRIKE<small id="ultimate-status">CHARGING</small></span></div></div>
+    <!-- Bottom Keyboard Controls & Combat Log -->
+    <footer class="controls-footer">
+      <div class="key-group">
+        <div class="group-title">MOVEMENT</div>
+        <div class="keys-row">
+          <span class="key-chip"><kbd>A</kbd><kbd>D</kbd> Walk</span>
+          <span class="key-chip"><kbd>Shift</kbd>+<kbd>A/D</kbd> Run</span>
+          <span class="key-chip"><kbd>S</kbd> Crouch</span>
+          <span class="key-chip"><kbd>W</kbd>/<kbd>Space</kbd> Jump</span>
+          <span class="key-chip"><kbd>L</kbd> Dash</span>
+          <span class="key-chip"><kbd>K</kbd> Evade</span><span class="key-chip"><kbd>F</kbd> Hold to fly · W/S altitude</span>
+        </div>
+      </div>
+
+      <div class="key-group">
+        <div class="group-title">COMBAT &amp; SKILLS</div>
+        <div class="keys-row">
+          <span class="key-chip"><kbd>J</kbd> Melee / Air Atk</span>
+          <span class="key-chip"><kbd>S</kbd>+<kbd>J</kbd> (Air) Slam</span>
+          <span class="key-chip"><kbd>U</kbd> Shoot (8 EN)</span>
+          <span class="key-chip"><kbd>I</kbd> Charged (25 EN)</span>
+          <span class="key-chip"><kbd>O</kbd> Barrage (35 EN)</span>
+          <span class="key-chip special"><kbd>P</kbd> Orbital (100% OD)</span>
+        </div>
+      </div>
+
+      <div class="combat-feed" id="combat-feed">
+        [SYS] GX-01 Valhalla deployed. Use keyboard to move and engage hostiles!
+      </div>
+    </footer>
+  </div>
+
+  <script src="game.js?v=6"></script>
+</body>
+</html>
