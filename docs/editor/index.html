@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GDD Workspace</title>
+<link rel="stylesheet" href="editor.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+</head>
+<body class="mode-split">
+
+<header class="topbar">
+  <div class="brand">GDD <span>Workspace</span></div>
+  <div class="file" id="fileName" title="">no file</div>
+  <span class="dirty-dot" title="Unsaved changes">●</span>
+  <button id="openBtn">Open…</button>
+  <div class="spacer"></div>
+  <div class="tabs" role="tablist">
+    <button data-mode="split" class="active" title="Edit + preview (Alt+1)">Split</button>
+    <button data-mode="edit" title="Editor only (Alt+2)">Edit</button>
+    <button data-mode="read" title="Preview only (Alt+3)">Read</button>
+    <button data-mode="changes" title="Diff against last save (Alt+4)">Changes<span class="badge" id="changeBadge"></span></button>
+  </div>
+  <button id="discardBtn" disabled title="Throw away all unsaved edits">Discard</button>
+  <button id="saveBtn" class="primary" disabled title="Ctrl+S">Save</button>
+</header>
+
+<main class="workspace">
+  <nav class="pane" id="outline">
+    <div class="pane-head">Outline</div>
+    <input id="outlineFilter" type="search" placeholder="Filter sections…">
+    <div class="pane-body"><ul class="outline-list" id="outlineList"></ul></div>
+  </nav>
+
+  <section class="pane" id="editorPane">
+    <div class="pane-head">Markdown</div>
+    <textarea id="editor" spellcheck="true" placeholder="Open a .md file to start"></textarea>
+  </section>
+
+  <section class="pane" id="previewPane">
+    <div class="pane-head">Preview <span style="text-transform:none;letter-spacing:0">· double-click any block to edit it</span></div>
+    <div class="pane-body" id="preview"><article class="md" id="previewBody"></article></div>
+  </section>
+
+  <section class="pane" id="changesPane">
+    <div class="pane-head">Changes since last save</div>
+    <div class="pane-body" id="changes"></div>
+  </section>
+</main>
+
+<footer class="statusbar">
+  <span id="stPos">Ln 1, Col 1</span>
+  <span id="stWords">0 words</span>
+  <span id="stChanges">no changes</span>
+  <span class="msg" id="stMsg"></span>
+</footer>
+
+<div class="welcome" id="welcome">
+  <div class="card">
+    <h1>GDD Workspace</h1>
+    <p>Open a Markdown file to read and edit it side by side. In Chrome or Edge, <b>Save</b> writes straight back to the file. In other browsers it downloads a copy.</p>
+    <div class="row">
+      <button class="primary" id="welcomeOpen">Open .md file…</button>
+      <button id="reopenBtn" hidden></button>
+    </div>
+    <div class="drop">…or drop a .md file here</div>
+  </div>
+</div>
+
+<div id="mirror" aria-hidden="true"></div>
+<input type="file" id="fileInput" accept=".md,.markdown,.txt,text/markdown" hidden>
+
+<script>
+(() => {
+  const $ = (id) => document.getElementById(id);
+  const editor = $('editor'), previewBody = $('previewBody'), preview = $('preview');
+  const outlineList = $('outlineList'), mirror = $('mirror');
+  const DEFAULT_PATH = '../GDD_ECLIPSE_OF_THE_IRON_GODS.md';
+
+  let fileHandle = null;   // File System Access handle (Chrome/Edge)
+  let fileName = '';
+  let baseline = '';       // content at last open/save
+  let headings = [];       // [{line, depth, text}]
+  let changedLines = new Set();
+  let mode = 'split';
+
+  /* ---------------- small storage helpers (all optional) ---------------- */
+  const ls = {
+    get(k) { try { return localStorage.getItem(k); } catch { return null; } },
+    set(k, v) { try { localStorage.setItem(k, v); } catch {} },
+    del(k) { try { localStorage.removeItem(k); } catch {} },
+  };
+  const idb = {
+    db: null,
+    async open() {
+      if (this.db) return this.db;
+      this.db = await new Promise((res, rej) => {
+        const r = indexedDB.open('gdd-workspace', 1);
+        r.onupgradeneeded = () => r.result.createObjectStore('kv');
+        r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error);
+      });
+      return this.db;
+    },
+    async get(k) { try { const db = await this.open(); return await new Promise((res) => { const q = db.transaction('kv').objectStore('kv').get(k); q.onsuccess = () => res(q.result); q.onerror = () => res(null); }); } catch { return null; } },
+    async set(k, v) { try { const db = await this.open(); db.transaction('kv', 'readwrite').objectStore('kv').put(v, k); } catch {} },
+  };
+
+  const msg = (t) => { $('stMsg').textContent = t; clearTimeout(msg.t); msg.t = setTimeout(() => $('stMsg').textContent = '', 4000); };
+  const draftKey = () => 'gdd-workspace:draft:' + fileName;
+
+  /* ---------------- open / load ---------------- */
+  function load(text, name, handle) {
+    fileHandle = handle || null;
+    fileName = name;
+    baseline = text;
+    let start = text;
+    const draft = ls.get(draftKey());
+    if (draft != null && draft !== text &&
+        confirm('You have unsaved edits to "' + name + '" from a previous session.\n\nOK = restore them\nCancel = discard them')) {
+      start = draft;
+    } else ls.del(draftKey());
+    editor.value = start;
+    $('fileName').textContent = name;
+    $('fileName').title = handle ? name + ' (saves to disk)' : name + ' (save downloads a copy)';
+    $('welcome').hidden = true;
+    editor.setSelectionRange(0, 0);
+    editor.scrollTop = 0; preview.scrollTop = 0;
+    update(true);
+    msg('Opened ' + name + (handle ? '' : ' (read-only source: Save will download)'));
+  }
+
+  async function openPicker() {
+    if (window.showOpenFilePicker) {
+      try {
+        const [h] = await showOpenFilePicker({ types: [{ description: 'Markdown', accept: { 'text/markdown': ['.md', '.markdown', '.txt'] } }] });
+        const f = await h.getFile();
+        await idb.set('lastHandle', h);
+        load(await f.text(), f.name, h);
+      } catch (e) { if (e.name !== 'AbortError') alert('Could not open file: ' + e.message); }
+    } else $('fileInput').click();
+  }
+  $('fileInput').addEventListener('change', async (e) => {
+    const f = e.target.files[0]; if (f) load(await f.text(), f.name, null);
+    e.target.value = '';
+  });
+  $('openBtn').onclick = () => { if (confirmLeave()) openPicker(); };
+  $('welcomeOpen').onclick = openPicker;
+
+  // drag & drop
+  addEventListener('dragover', (e) => { e.preventDefault(); document.body.classList.add('dragging'); });
+  addEventListener('dragleave', () => document.body.classList.remove('dragging'));
+  addEventListener('drop', async (e) => {
+    e.preventDefault(); document.body.classList.remove('dragging');
+    if (!confirmLeave()) return;
+    const item = e.dataTransfer.items && e.dataTransfer.items[0];
+    if (item && item.getAsFileSystemHandle) {
+      try {
+        const h = await item.getAsFileSystemHandle();
+        if (h && h.kind === 'file') { const f = await h.getFile(); await idb.set('lastHandle', h); return load(await f.text(), f.name, h); }
+      } catch {}
+    }
+    const f = e.dataTransfer.files[0]; if (f) load(await f.text(), f.name, null);
+  });
+
+  // startup: reopen last file, or fetch the GDD when served over http
+  (async () => {
+    const h = await idb.get('lastHandle');
+    if (h) {
+      const b = $('reopenBtn');
+      b.hidden = false; b.textContent = 'Reopen ' + h.name;
+      b.onclick = async () => {
+        try {
+          if ((await h.queryPermission({ mode: 'readwrite' })) !== 'granted' &&
+              (await h.requestPermission({ mode: 'readwrite' })) !== 'granted') return;
+          const f = await h.getFile(); load(await f.text(), f.name, h);
+        } catch (e) { alert('Could not reopen: ' + e.message); }
+      };
+    }
+    if (location.protocol.startsWith('http')) {
+      try { const r = await fetch(DEFAULT_PATH, { cache: 'no-store' }); if (r.ok) load(await r.text(), DEFAULT_PATH.split('/').pop(), null); } catch {}
+    }
+  })();
+
+  /* ---------------- save ---------------- */
+  async function save() {
+    if (!fileName) return;
+    const text = editor.value;
+    if (fileHandle) {
+      try {
+        if ((await fileHandle.queryPermission({ mode: 'readwrite' })) !== 'granted' &&
+            (await fileHandle.requestPermission({ mode: 'readwrite' })) !== 'granted') throw new Error('permission denied');
+        const w = await fileHandle.createWritable(); await w.write(text); await w.close();
+        msg('Saved to ' + fileName);
+      } catch (e) { alert('Save failed: ' + e.message); return; }
+    } else {
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(new Blob([text], { type: 'text/markdown' }));
+      a.download = fileName; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+      msg('Downloaded ' + fileName + ': replace the original in docs/ with it');
+    }
+    baseline = text; ls.del(draftKey()); update();
+  }
+  $('saveBtn').onclick = save;
+  $('discardBtn').onclick = () => {
+    if (!confirm('Discard all unsaved edits?')) return;
+    editor.value = baseline; ls.del(draftKey()); update(true); msg('Edits discarded');
+  };
+  const confirmLeave = () => editor.value === baseline || confirm('You have unsaved edits. Continue anyway?');
+  addEventListener('beforeunload', (e) => { if (fileName && editor.value !== baseline) { e.preventDefault(); e.returnValue = ''; } });
+
+  /* ---------------- render ---------------- */
+  const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+  function render(text) {
+    headings = [];
+    if (!window.marked) {
+      previewBody.innerHTML = '<p><i>Preview needs internet the first time (Markdown library from cdnjs).</i></p><pre>' + esc(text) + '</pre>';
+      text.split('\n').forEach((l, i) => { const m = /^(#{1,4})\s+(.*)/.exec(l); if (m) headings.push({ line: i, depth: m[1].length, text: m[2] }); });
+      return;
+    }
+    const tokens = marked.lexer(text, { gfm: true });
+    let line = 0, html = '';
+    for (const tok of tokens) {
+      if (tok.type === 'heading') headings.push({ line, depth: tok.depth, text: tok.text.replace(/[*_`]/g, '') });
+      if (tok.type !== 'space') {
+        const one = [tok]; one.links = tokens.links;
+        html += '<div class="blk" data-line="' + line + '">' + marked.parser(one) + '</div>';
+      }
+      line += (tok.raw.match(/\n/g) || []).length;
+    }
+    const top = preview.scrollTop;
+    previewBody.innerHTML = html;
+    preview.scrollTop = top;
+  }
+
+  function renderOutline() {
+    const q = $('outlineFilter').value.trim().toLowerCase();
+    const edited = new Set();
+    for (const ln of changedLines) { const h = headingFor(ln); if (h) edited.add(h.line); }
+    outlineList.innerHTML = headings
+      .filter((h) => h.depth <= 4 && (!q || h.text.toLowerCase().includes(q)))
+      .map((h) => '<li><a href="#" class="l' + h.depth + (edited.has(h.line) ? ' edited' : '') + '" data-line="' + h.line + '">' + esc(h.text) + '</a></li>')
+      .join('');
+    markCurrent();
+  }
+  $('outlineFilter').addEventListener('input', renderOutline);
+  outlineList.addEventListener('click', (e) => {
+    const a = e.target.closest('a'); if (!a) return; e.preventDefault();
+    goTo(+a.dataset.line, true);
+  });
+
+  function headingFor(line) { let h = null; for (const x of headings) { if (x.line <= line) h = x; else break; } return h; }
+
+  /* ---------------- navigation & sync ---------------- */
+  const caretLine = () => editor.value.slice(0, editor.selectionStart).split('\n').length - 1;
+  const lineStart = (n) => { let i = 0; for (let k = 0; k < n; k++) { i = editor.value.indexOf('\n', i) + 1; if (!i) return editor.value.length; } return i; };
+
+  function scrollEditorTo(line) {
+    const pos = lineStart(line);
+    const cs = getComputedStyle(editor);
+    mirror.style.width = editor.clientWidth + 'px';
+    mirror.style.padding = cs.padding;
+    mirror.textContent = editor.value.slice(0, pos) + '​';
+    editor.scrollTop = Math.max(0, mirror.scrollHeight - parseFloat(cs.paddingBottom) - 40 - parseFloat(cs.lineHeight));
+    editor.focus({ preventScroll: true });
+    editor.setSelectionRange(pos, pos);
+  }
+
+  function scrollPreviewTo(line, flash) {
+    let best = null;
+    for (const b of previewBody.querySelectorAll('.blk')) { if (+b.dataset.line <= line) best = b; else break; }
+    if (!best) return;
+    best.scrollIntoView({ block: 'start' });
+    if (flash) { best.classList.remove('flash'); void best.offsetWidth; best.classList.add('flash'); }
+  }
+
+  function goTo(line, flash) {
+    if (mode === 'changes') setMode('split');
+    if (mode !== 'read') scrollEditorTo(line);
+    if (mode !== 'edit') scrollPreviewTo(line, flash);
+    currentLine = line; markCurrent(); updateStatus();
+  }
+
+  let currentLine = 0;
+  function markCurrent() {
+    const h = headingFor(currentLine);
+    outlineList.querySelectorAll('a.current').forEach((a) => a.classList.remove('current'));
+    if (!h) return;
+    const a = outlineList.querySelector('a[data-line="' + h.line + '"]');
+    if (a) { a.classList.add('current'); const r = a.getBoundingClientRect(), p = a.parentElement.parentElement.parentElement.getBoundingClientRect(); if (r.top < p.top || r.bottom > p.bottom) a.scrollIntoView({ block: 'nearest' }); }
+  }
+
+  // caret moves in the editor → follow in preview
+  const followCaret = () => {
+    currentLine = caretLine(); markCurrent(); updateStatus();
+    if (mode === 'split') scrollPreviewTo(currentLine, false);
+  };
+  editor.addEventListener('click', followCaret);
+  editor.addEventListener('keyup', (e) => { if (/^(Arrow|Page|Home|End)/.test(e.key)) followCaret(); });
+
+  // reading in preview → highlight section in outline
+  preview.addEventListener('scroll', () => {
+    if (mode !== 'read') return;
+    const top = preview.getBoundingClientRect().top + 40;
+    let cur = null;
+    for (const b of previewBody.querySelectorAll('.blk')) { if (b.getBoundingClientRect().top <= top) cur = b; else break; }
+    if (cur) { currentLine = +cur.dataset.line; markCurrent(); }
+  });
+
+  // double-click preview block → jump to its source
+  previewBody.addEventListener('dblclick', (e) => {
+    const b = e.target.closest('.blk'); if (!b) return;
+    if (mode === 'read') setMode('split');
+    scrollEditorTo(+b.dataset.line); currentLine = +b.dataset.line; markCurrent();
+  });
+
+  /* ---------------- diff (git-style) ---------------- */
+  function diff(a, b) {
+    let s = 0; while (s < a.length && s < b.length && a[s] === b[s]) s++;
+    let ea = a.length, eb = b.length;
+    while (ea > s && eb > s && a[ea - 1] === b[eb - 1]) { ea--; eb--; }
+    const A = a.slice(s, ea), B = b.slice(s, eb), n = A.length, m = B.length;
+    const ops = [];
+    for (let i = 0; i < s; i++) ops.push({ t: '=', a: i, b: i });
+    if (n * m > 4e6) {
+      for (let i = 0; i < n; i++) ops.push({ t: '-', a: s + i });
+      for (let j = 0; j < m; j++) ops.push({ t: '+', b: s + j });
+    } else {
+      const W = m + 1, L = new Uint32Array((n + 1) * W);
+      for (let i = n - 1; i >= 0; i--) for (let j = m - 1; j >= 0; j--)
+        L[i * W + j] = A[i] === B[j] ? L[(i + 1) * W + j + 1] + 1 : Math.max(L[(i + 1) * W + j], L[i * W + j + 1]);
+      let i = 0, j = 0;
+      while (i < n || j < m) {
+        if (i < n && j < m && A[i] === B[j]) { ops.push({ t: '=', a: s + i, b: s + j }); i++; j++; }
+        else if (j < m && (i >= n || L[i * W + j + 1] >= L[(i + 1) * W + j])) { ops.push({ t: '+', b: s + j }); j++; }
+        else { ops.push({ t: '-', a: s + i }); i++; }
+      }
+    }
+    for (let k = 0; k < a.length - ea; k++) ops.push({ t: '=', a: ea + k, b: eb + k });
+    return ops;
+  }
+
+  let lastOps = [], lastHunks = [];
+  function computeDiff() {
+    const a = baseline.split('\n'), b = editor.value.split('\n');
+    lastOps = diff(a, b);
+    changedLines = new Set();
+    let adds = 0, dels = 0;
+    lastOps.forEach((o, k) => {
+      if (o.t === '+') { adds++; changedLines.add(o.b); }
+      if (o.t === '-') { dels++; const nxt = lastOps.slice(k).find((x) => x.b != null); changedLines.add(nxt ? nxt.b : b.length - 1); }
+    });
+    // hunks with 3 lines of context
+    const CTX = 3; lastHunks = [];
+    let k = 0;
+    while (k < lastOps.length) {
+      if (lastOps[k].t === '=') { k++; continue; }
+      let start = Math.max(0, k - CTX), end = k;
+      while (end < lastOps.length) {
+        if (lastOps[end].t !== '=') { end++; continue; }
+        let run = 0; while (end + run < lastOps.length && lastOps[end + run].t === '=') run++;
+        if (end + run >= lastOps.length || run > CTX * 2) { end = Math.min(lastOps.length, end + CTX); break; }
+        end += run;
+      }
+      const prev = lastHunks[lastHunks.length - 1];
+      if (prev && start <= prev.end) prev.end = end; else lastHunks.push({ start, end });
+      k = end;
+    }
+    return { a, b, adds, dels };
+  }
+
+  function renderChanges(d) {
+    const box = $('changes');
+    if (!lastHunks.length) { box.innerHTML = '<div class="diff-empty">No changes since the last save.</div>'; return; }
+    box.innerHTML = lastHunks.map((h, hi) => {
+      const firstNew = lastOps.slice(h.start, h.end).find((o) => o.b != null);
+      const sec = firstNew ? headingFor(firstNew.b) : null;
+      let rows = '';
+      for (let k = h.start; k < h.end; k++) {
+        const o = lastOps[k];
+        const txt = o.t === '+' ? d.b[o.b] : d.a[o.a];
+        const cls = o.t === '+' ? 'add' : o.t === '-' ? 'del' : '';
+        rows += '<div class="dl ' + cls + '"><span class="n">' + (o.a != null ? o.a + 1 : '') + '</span><span class="n">' + (o.b != null ? o.b + 1 : '') +
+                '</span><span class="s">' + (o.t === '=' ? ' ' : o.t) + '</span><span>' + esc(txt) + '</span></div>';
+      }
+      return '<div class="hunk"><div class="hunk-head">' + (sec ? esc(sec.text) : 'Top of file') +
+        '<a data-go="' + (firstNew ? firstNew.b : 0) + '">open</a><a data-revert="' + hi + '">revert this hunk</a></div>' + rows + '</div>';
+    }).join('');
+  }
+  $('changes').addEventListener('click', (e) => {
+    const go = e.target.dataset.go, rv = e.target.dataset.revert;
+    if (go != null) goTo(+go, true);
+    if (rv != null) {
+      const h = lastHunks[+rv], a = baseline.split('\n'), b = editor.value.split('\n'), out = [];
+      lastOps.forEach((o, k) => {
+        const inH = k >= h.start && k < h.end;
+        if (o.t === '=') out.push(b[o.b]);
+        else if (o.t === '-') { if (inH) out.push(a[o.a]); }
+        else if (!inH) out.push(b[o.b]);
+      });
+      editor.value = out.join('\n'); update(); msg('Hunk reverted');
+    }
+  });
+
+  /* ---------------- update loop ---------------- */
+  function updateStatus() {
+    const v = editor.value, p = editor.selectionStart;
+    const ln = v.slice(0, p).split('\n');
+    $('stPos').textContent = 'Ln ' + ln.length + ', Col ' + (ln[ln.length - 1].length + 1);
+    $('stWords').textContent = (v.match(/\S+/g) || []).length.toLocaleString() + ' words';
+  }
+
+  let renderTimer;
+  function update(immediate) {
+    const run = () => {
+      render(editor.value);
+      const d = computeDiff();
+      const dirty = editor.value !== baseline;
+      document.body.classList.toggle('dirty', dirty);
+      $('saveBtn').disabled = !dirty; $('discardBtn').disabled = !dirty;
+      $('changeBadge').textContent = dirty ? lastHunks.length : '';
+      $('stChanges').textContent = dirty ? '+' + d.adds + ' −' + d.dels + ' lines' : 'no changes';
+      if (mode === 'changes') renderChanges(d);
+      renderOutline(); updateStatus();
+      if (fileName) { if (dirty) ls.set(draftKey(), editor.value); else ls.del(draftKey()); }
+    };
+    clearTimeout(renderTimer);
+    immediate ? run() : (renderTimer = setTimeout(run, 250));
+  }
+  editor.addEventListener('input', () => { currentLine = caretLine(); update(); });
+
+  // Tab inserts spaces instead of leaving the editor
+  editor.addEventListener('keydown', (e) => {
+    if (e.key === 'Tab' && !e.ctrlKey && !e.metaKey) { e.preventDefault(); document.execCommand('insertText', false, '  '); }
+  });
+
+  /* ---------------- modes & shortcuts ---------------- */
+  function setMode(m) {
+    mode = m;
+    document.body.className = document.body.className.replace(/mode-\w+/, 'mode-' + m);
+    document.querySelectorAll('.tabs button').forEach((b) => b.classList.toggle('active', b.dataset.mode === m));
+    if (m === 'changes') renderChanges(computeDiff());
+    else requestAnimationFrame(() => goTo(currentLine, false));
+    ls.set('gdd-workspace:mode', m);
+  }
+  document.querySelectorAll('.tabs button').forEach((b) => b.onclick = () => setMode(b.dataset.mode));
+  const savedMode = ls.get('gdd-workspace:mode'); if (savedMode && savedMode !== 'changes') setMode(savedMode);
+
+  addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') { e.preventDefault(); save(); }
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'o') { e.preventDefault(); if (confirmLeave()) openPicker(); }
+    if (e.altKey && /^[1-4]$/.test(e.key)) { e.preventDefault(); setMode(['split', 'edit', 'read', 'changes'][+e.key - 1]); }
+  });
+})();
+</script>
+</body>
+</html>
